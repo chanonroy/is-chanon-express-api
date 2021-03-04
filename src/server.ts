@@ -24,11 +24,11 @@ app.use(
   })
 )
 
-app.get('/ask', isChanonService)
+app.get("/ask", isChanonService)
 app.get("/health", healthcheckHandler)
 
 let server: Server | null = null
-export const start = async () => {
+export const start = async (): Promise<void> => {
   if (server !== null) return
 
   server = createServer(app)
@@ -44,11 +44,11 @@ export const start = async () => {
   logger.info(`🚀 Listening on ${address.address}:${address.port}`)
 }
 
-export const stop = async () => {
+export const stop = async (): Promise<void> => {
   if (server === null) return
 
   await new Promise<void>((resolve, reject): void => {
-    server!.close((err: any) => {
+    server!.close(err => {
       if (err) {
         reject(err)
       } else {

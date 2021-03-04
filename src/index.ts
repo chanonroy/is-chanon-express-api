@@ -21,7 +21,7 @@ const stop = async (): Promise<void> => {
   }
 }
 
-const logErrAndExit = (reason?: {} | Error | null): void => {
+const logErrAndExit = (reason?: Error | null): void => {
   if (reason) {
     logger.error(reason)
   }
