@@ -6,16 +6,18 @@
   "scripts": {
     "build": "tsc --build tsconfig.notests.json",
     "lint": "tsc --noEmit && eslint . --ext .ts,.js",
-    "start": "ts-node-dev --files --transpile-only --require=dotenv/config src/index.ts"
+    "start": "ts-node-dev --files --transpile-only src/index.ts"
   },
   "dependencies": {
     "express": "^4.17.1",
     "express-winston": "^4.1.0",
+    "http-status-codes": "^2.1.4",
     "is-chanon": "^2.2.4",
     "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
+    "ts-node-dev": "^1.1.6",
     "typescript": "^4.2.2"
   }
 }

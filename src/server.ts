@@ -1,10 +1,11 @@
 import express from "express"
 import expressWinston from "express-winston"
-import logger from "./logger"
 import { createServer, Server } from "http"
 import { AddressInfo } from "net"
+import healthcheckHandler from "./controllers/healthcheck"
+import isChanonService from "./controllers/isChanon"
+import logger from "./logger"
 
-const port = 3000
 const app = express()
 
 app.use(
@@ -23,6 +24,9 @@ app.use(
   })
 )
 
+app.get('/ask', isChanonService)
+app.get("/health", healthcheckHandler)
+
 let server: Server | null = null
 export const start = async () => {
   if (server !== null) return
@@ -30,7 +34,7 @@ export const start = async () => {
   server = createServer(app)
   await new Promise<void>((resolve): void => {
     server!.listen(
-      parseInt(process.env.HTTP_PORT ?? "3001", 10),
+      parseInt(process.env.HTTP_PORT ?? "3000", 10),
       "0.0.0.0",
       () => resolve()
     )
@@ -56,6 +60,3 @@ export const stop = async () => {
   server = null
   logger.info("Stopped listening")
 }
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
