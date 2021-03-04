@@ -33,6 +33,7 @@ export const start = async (): Promise<void> => {
 
   server = createServer(app)
   await new Promise<void>((resolve): void => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     server!.listen(
       parseInt(process.env.HTTP_PORT ?? "3000", 10),
       "0.0.0.0",
@@ -48,6 +49,7 @@ export const stop = async (): Promise<void> => {
   if (server === null) return
 
   await new Promise<void>((resolve, reject): void => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     server!.close(err => {
       if (err) {
         reject(err)

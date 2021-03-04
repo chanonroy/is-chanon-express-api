@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { StatusCodes } from "http-status-codes"
 import isChanon from "is-chanon"
 
-export default (req: Request, res: Response) => {
+export default (req: Request, res: Response): Response => {
   const query = req.query.q
 
   if (!query || typeof query !== "string") {
