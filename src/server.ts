@@ -2,8 +2,8 @@ import express from "express"
 import expressWinston from "express-winston"
 import { createServer, Server } from "http"
 import { AddressInfo } from "net"
-import healthcheckHandler from "./controllers/healthcheck"
-import isChanonService from "./controllers/isChanon"
+import health from "./controllers/health"
+import ask from "./controllers/ask"
 import logger from "./logger"
 
 const app = express()
@@ -24,8 +24,8 @@ app.use(
   })
 )
 
-app.get("/ask", isChanonService)
-app.get("/health", healthcheckHandler)
+app.get("/ask", ask)
+app.get("/health", health)
 
 let server: Server | null = null
 export const start = async (): Promise<void> => {
