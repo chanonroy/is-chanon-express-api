@@ -23,4 +23,4 @@ jobs:
 
       - run: yarn lint
 
-      - run: yarn test:ci
+      - run: yarn test
