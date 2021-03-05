@@ -1,10 +1,6 @@
 name: Test and Build
 
-on:
-  push:
-    branches:
-      - "**"
-      - "!main"
+on: push
 
 jobs:
   test_and_build:
